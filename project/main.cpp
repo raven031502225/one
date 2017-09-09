@@ -7,7 +7,7 @@
 using namespace std;
 bool tright[9][9][9] = { 0 };
 void main(int argc, char** argv) {
-	ofstream outfile("sudoku.txt", ios::out);
+	ofstream outfile(".//sudoku.txt", ios::out);
 	srand(time(0));
 	int i=0;							//用于写循环
 	int c, d;							//用于将数独写入文件时对数组的定位
