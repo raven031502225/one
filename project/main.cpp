@@ -13,7 +13,7 @@ void main(int argc, char** argv) {
 	int c, d;							//用于将数独写入文件时对数组的定位
 	int j ;								//用于记录需要生成多少个数独
 	char g[] = "-c";
-	if (argc >= 3) {					//判断用户是否输入多个参数
+	if (argc != 3) {					//判断用户是否输入多个参数
 		cout << "you enter a wrong paramter" << endl;
 		return;
 	}
