@@ -88,28 +88,30 @@ void main(int argc, char** argv) {
 				break;
 			}
 		}
-		for (i = 0; i < 9; i++) {
-			if (tright[y][x][i] == 0) {						//判断是否此处九个数均不能使用
-				i = 100;
-				break;
-			}
-		}
-		if (i != 100) {						//若此处九个数均不能使用，则回溯至上一个数的位置并重新填写
+		if (tright[y][x][anyway - 1] == 1) {	//若此格可填，则无需接下来的判断
 			for (i = 0; i < 9; i++) {
-				tright[y][x][i] = 0;
+				if (tright[y][x][i] == 0) {						//判断是否此处九个数均不能使用
+					i = 100;
+					break;
+				}
 			}
-			if (x == 0) {
-				x = 8;
-				y = y - 1;
+			if (i != 100) {						//若此处九个数均不能使用，则回溯至上一个数的位置并重新填写
+				for (i = 0; i < 9; i++) {
+					tright[y][x][i] = 0;
+				}
+				if (x == 0) {
+					x = 8;
+					y = y - 1;
+				}
+				else {
+					x = x - 1;
+				}
+				tright[y][x][all[y][x] - 1] = 1;
+				upright[y][all[y][x] - 1] = 0;
+				transverse[x][all[y][x] - 1] = 0;
+				square[(x / 3) + 3 * (y / 3)][all[y][x] - 1] = 0;
+				all[y][x] = 0;
 			}
-			else {
-				x = x - 1;
-			}
-			tright[y][x][all[y][x]-1] = 1;
-			upright[y][all[y][x] - 1] = 0;
-			transverse[x][all[y][x] - 1] = 0;
-			square[(x / 3) + 3 * (y / 3)][all[y][x] - 1] = 0;
-			all[y][x] = 0;
 		}
 	}
 	outfile.close();
